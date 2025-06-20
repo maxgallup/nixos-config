@@ -15,7 +15,7 @@
     extraGroups = ["networkmanager" "wheel" "docker"];
   };
 
-  nixpkgs.config.allowUnfree = true;
+  # nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
     git
