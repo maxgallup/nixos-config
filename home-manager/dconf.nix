@@ -206,89 +206,89 @@ with lib.hm.gvariant;
       manualhide = true;
     };
 
-    "org/gnome/shell/extensions/dash-to-panel" = {
-      animate-appicon-hover = false;
-      animate-appicon-hover-animation-extent = ''
-        {"RIPPLE":4,"PLANK":4,"SIMPLE":1}
-      '';
+    # "org/gnome/shell/extensions/dash-to-panel" = {
+    #   animate-appicon-hover = false;
+    #   animate-appicon-hover-animation-extent = ''
+    #     {"RIPPLE":4,"PLANK":4,"SIMPLE":1}
+    #   '';
 
-      animate-appicon-hover-animation-zoom = ''
-        {"SIMPLE":2.04,"RIPPLE":1.25,"PLANK":2.0}
-      '';
+    #   animate-appicon-hover-animation-zoom = ''
+    #     {"SIMPLE":2.04,"RIPPLE":1.25,"PLANK":2.0}
+    #   '';
 
-      animate-show-apps = false;
-      appicon-margin = 2;
-      appicon-padding = 2;
-      appicon-style = "NORMAL";
-      available-monitors = [ 0 ];
-      dot-color-1 = "#5294e2";
-      dot-color-2 = "#5294e2";
-      dot-color-3 = "#5294e2";
-      dot-color-4 = "#5294e2";
-      dot-color-dominant = false;
-      dot-color-override = false;
-      dot-color-unfocused-1 = "#5294e2";
-      dot-color-unfocused-2 = "#5294e2";
-      dot-color-unfocused-3 = "#5294e2";
-      dot-color-unfocused-4 = "#5294e2";
-      dot-position = "LEFT";
-      dot-size = 0;
-      dot-style-focused = "METRO";
-      dot-style-unfocused = "METRO";
-      extension-version = 68;
-      focus-highlight = true;
-      focus-highlight-color = "#9a9996";
-      focus-highlight-dominant = false;
-      focus-highlight-opacity = 40;
-      group-apps = true;
-      hide-donate-icon-unixtime = "1741763920054";
-      hotkeys-overlay-combo = "TEMPORARILY";
-      intellihide = false;
-      isolate-monitors = false;
-      isolate-workspaces = false;
-      leftbox-padding = -1;
-      leftbox-size = 0;
-      multi-monitors = false;
-      overview-click-to-exit = false;
-      panel-anchors = ''
-        {"LEN-0x00000000":"MIDDLE","DEL-9ZFV3P3":"MIDDLE"}
-      '';
-      panel-element-positions = ''
-        {"LEN-0x00000000":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"dateMenu","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"centerBox","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}],"DEL-9ZFV3P3":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"dateMenu","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"centerBox","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
-      '';
-      panel-element-positions-monitors-sync = true;
-      panel-lengths = ''
-        {"LEN-0x00000000":100,"DEL-9ZFV3P3":100}
-      '';
-      panel-positions = ''
-        {"LEN-0x00000000":"TOP","DEL-9ZFV3P3":"TOP"}
-      '';
-      panel-sizes = ''
-        {"LEN-0x00000000":24,"DEL-9ZFV3P3":22}
-      '';
-      prefs-opened = false;
-      primary-monitor = "LEN-0x00000000";
-      show-appmenu = false;
-      show-apps-icon-file = "";
-      show-apps-icon-side-padding = 4;
-      show-favorites = false;
-      show-favorites-all-monitors = false;
-      show-running-apps = true;
-      show-tooltip = false;
-      show-window-previews = false;
-      status-icon-padding = -1;
-      target-prefs-page = "";
-      trans-bg-color = "#000000";
-      trans-panel-opacity = 0.55;
-      trans-use-custom-bg = true;
-      trans-use-custom-gradient = false;
-      trans-use-custom-opacity = true;
-      trans-use-dynamic-opacity = true;
-      tray-padding = -1;
-      tray-size = 0;
-      window-preview-title-font-color = "#dddddd";
-      window-preview-title-position = "TOP";
-    };
+    #   animate-show-apps = false;
+    #   appicon-margin = 2;
+    #   appicon-padding = 2;
+    #   appicon-style = "NORMAL";
+    #   available-monitors = [ 0 ];
+    #   dot-color-1 = "#5294e2";
+    #   dot-color-2 = "#5294e2";
+    #   dot-color-3 = "#5294e2";
+    #   dot-color-4 = "#5294e2";
+    #   dot-color-dominant = false;
+    #   dot-color-override = false;
+    #   dot-color-unfocused-1 = "#5294e2";
+    #   dot-color-unfocused-2 = "#5294e2";
+    #   dot-color-unfocused-3 = "#5294e2";
+    #   dot-color-unfocused-4 = "#5294e2";
+    #   dot-position = "LEFT";
+    #   dot-size = 0;
+    #   dot-style-focused = "METRO";
+    #   dot-style-unfocused = "METRO";
+    #   extension-version = 68;
+    #   focus-highlight = true;
+    #   focus-highlight-color = "#9a9996";
+    #   focus-highlight-dominant = false;
+    #   focus-highlight-opacity = 40;
+    #   group-apps = true;
+    #   hide-donate-icon-unixtime = "1741763920054";
+    #   hotkeys-overlay-combo = "TEMPORARILY";
+    #   intellihide = false;
+    #   isolate-monitors = false;
+    #   isolate-workspaces = false;
+    #   leftbox-padding = -1;
+    #   leftbox-size = 0;
+    #   multi-monitors = false;
+    #   overview-click-to-exit = false;
+    #   panel-anchors = ''
+    #     {"LEN-0x00000000":"MIDDLE","DEL-9ZFV3P3":"MIDDLE"}
+    #   '';
+    #   panel-element-positions = ''
+    #     {"LEN-0x00000000":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":true,"position":"stackedTL"},{"element":"dateMenu","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"centerBox","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}],"DEL-9ZFV3P3":[{"element":"showAppsButton","visible":false,"position":"stackedTL"},{"element":"activitiesButton","visible":false,"position":"stackedTL"},{"element":"leftBox","visible":false,"position":"stackedTL"},{"element":"dateMenu","visible":true,"position":"stackedTL"},{"element":"taskbar","visible":true,"position":"centerMonitor"},{"element":"rightBox","visible":true,"position":"stackedBR"},{"element":"centerBox","visible":false,"position":"stackedBR"},{"element":"systemMenu","visible":true,"position":"stackedBR"},{"element":"desktopButton","visible":false,"position":"stackedBR"}]}
+    #   '';
+    #   panel-element-positions-monitors-sync = true;
+    #   panel-lengths = ''
+    #     {"LEN-0x00000000":100,"DEL-9ZFV3P3":100}
+    #   '';
+    #   panel-positions = ''
+    #     {"LEN-0x00000000":"TOP","DEL-9ZFV3P3":"TOP"}
+    #   '';
+    #   panel-sizes = ''
+    #     {"LEN-0x00000000":24,"DEL-9ZFV3P3":22}
+    #   '';
+    #   prefs-opened = false;
+    #   primary-monitor = "LEN-0x00000000";
+    #   show-appmenu = false;
+    #   show-apps-icon-file = "";
+    #   show-apps-icon-side-padding = 4;
+    #   show-favorites = false;
+    #   show-favorites-all-monitors = false;
+    #   show-running-apps = true;
+    #   show-tooltip = false;
+    #   show-window-previews = false;
+    #   status-icon-padding = -1;
+    #   target-prefs-page = "";
+    #   trans-bg-color = "#000000";
+    #   trans-panel-opacity = 0.55;
+    #   trans-use-custom-bg = true;
+    #   trans-use-custom-gradient = false;
+    #   trans-use-custom-opacity = true;
+    #   trans-use-dynamic-opacity = true;
+    #   tray-padding = -1;
+    #   tray-size = 0;
+    #   window-preview-title-font-color = "#dddddd";
+    #   window-preview-title-position = "TOP";
+    # };
 
     "org/gnome/shell/extensions/pop-shell" = {
       activate-launcher = [];

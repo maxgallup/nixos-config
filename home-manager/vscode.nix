@@ -1,0 +1,104 @@
+{ config, lib, pkgs, ... }:
+
+{
+  programs.vscode = {
+    enable = true;
+    package = pkgs.vscode;
+    profiles.default = {
+      extensions = with pkgs.vscode-extensions; [
+        rust-lang.rust-analyzer
+        tamasfe.even-better-toml
+        myriad-dreamin.tinymist
+        streetsidesoftware.code-spell-checker
+        # corentinartaud.pdfpreview
+      ];
+      userSettings = {
+        "workbench.startupEditor" = "none";
+        "telemetry.telemetryLevel" = "off";
+        "files.autoSave" = "afterDelay";
+        "editor.tabSize" = 4;
+        "explorer.confirmDragAndDrop" = false;
+        "rst.preview.pythonPath" = "python3";
+        "editor.renderControlCharacters" = true;
+        "editor.renderWhitespace" = "none";
+        "editor.renderLineHighlightOnlyWhenFocus" = true;
+        "editor.wordWrap" = "on";
+        "cmake.configureOnOpen" = false;
+        "terminal.integrated.persistentSessionReviveProcess" = "never";
+        "terminal.integrated.enablePersistentSessions" = false;
+        "workbench.preferredDarkColorTheme" = "Gruvbox Black";
+        "workbench.preferredHighContrastLightColorTheme" = "monokai-charcoal (gray)";
+        "rust-analyzer.inlayHints.enable" = false;
+        "workbench.editorAssociations" = {
+          "*.html" = "default";
+        };
+        "workbench.colorCustomizations" = {
+          # "activityBar.background" = "#a8d8e322";
+          "tab.activeBackground" = "#76ffaf23";
+          "tab.activeBorder" = "#00ff6abc";
+          # "tab.activeBorderTop" = "#00ff6abc";
+        };
+        "rust-analyzer.inlayHints.parameterHints.enable" = false;
+        "rust-analyzer.inlayHints.typeHints.enable" = false;
+        "extensions.ignoreRecommendations" = true;
+        "terminal.integrated.enableMultiLinePasteWarning" = false;
+        "security.workspace.trust.untrustedFiles" = "open";
+        "workbench.preferredLightColorTheme" = "Default Light Modern";
+        "window.autoDetectHighContrast" = false;
+        "window.autoDetectColorScheme" = true;
+        "svelte.enable-ts-plugin" = true;
+        "workbench.editorLargeFileConfirmation" = 1048576;
+        "files.maxMemoryForLargeFilesMB" = 8192;
+        "terminal.integrated.tabStopWidth" = 4;
+        "workbench.editor.enablePreview" = false;
+        "editor.minimap.enabled" = false;
+        "cSpell.enableFiletypes" = [
+          "typst"
+        ];
+        "zenMode.hideLineNumbers" = false;
+        "zenMode.centerLayout" = false;
+        "workbench.colorTheme" = "Solarized Light";
+        "terminal.integrated.commandsToSkipShell" = [
+          "workbench.view.explorer"
+          "workbench.action.toggleSidebarVisibility"
+          "language-julia.interrupt"
+        ];
+        "terminal.integrated.scrollback" = 50000;
+        "window.commandCenter" = false;
+        "julia.symbolCacheDownload" = true;
+        "julia.executablePath" = "/opt/julia-1.9.3/bin/julia";
+        "julia.enableTelemetry" = false;
+        "workbench.panel.defaultLocation" = "left";
+        "editor.rulers" = [ 100 ];
+        "editor.fontFamily" = "'CodeNewRoman Nerd Font Mono', 'monospace', monospace";
+        "git.openRepositoryInParentFolders" = "never";
+        "[typescript]" = {
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+        };
+        "editor.formatOnSave" = true;
+        "clangd.path" = "/home/max/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd";
+        "window.titleBarStyle" = "custom";
+        "python.terminal.activateEnvironment" = false;
+        "editor.semanticTokenColorCustomizations" = {
+          "enabled" = true;
+        };
+        "workbench.editor.showTabs" = "none";
+        "zenMode.showTabs" = "none";
+        "window.enableMenuBarMnemonics" = false;
+        "window.customMenuBarAltFocus" = false;
+        "[typst]" = {
+          "editor.wordSeparators" = "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?";
+        };
+        "[typst-code]" = {
+          "editor.wordSeparators" = "`~!@#$%^&*()=+[{]}\\|;:'\",.<>/?";
+        };
+        "terminal.integrated.defaultProfile.linux" = "bash";
+        "chat.commandCenter.enabled" = false;
+        "makefile.configureOnOpen" = false;
+        "window.customTitleBarVisibility" = "windowed";
+        "tinymist.preview.invertColors" = "auto";
+        "window.confirmBeforeClose" = "keyboardOnly";
+      };
+    };
+  };
+}

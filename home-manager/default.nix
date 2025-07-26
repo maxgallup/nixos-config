@@ -7,12 +7,11 @@
 
   imports = [
     ./dconf.nix
+    ./vscode.nix
   ];
-
 
   home.packages = [
     # inputs.zen-browser.packages.${pkgs.system}.default
-    pkgs.vscode
     # pkgs.spotify
     # pkgs.discord
     # pkgs.obs-studio
@@ -25,20 +24,6 @@
   #   userName = "todo";
   #   userEmail = "todo";
   # };
-
-  programs.vscode = {
-  enable = true;
-  package = pkgs.vscode;
-  profiles.default = {
-      extensions = with pkgs.vscode-extensions; [
-      rust-lang.rust-analyzer
-      ];
-      userSettings = {
-      "editor.rulers" = [ 80 120 ];
-      "workbench.colorTheme" = "Dracula";
-      };
-  };
-};
 
   home.sessionVariables = {
     EDITOR = "code";

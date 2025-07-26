@@ -93,13 +93,18 @@
     vim
     git
     brave
-    gnome-tweaks
-    dconf-editor
-    gnome-extension-manager
+    just
+
     rustc
     cargo
     rustfmt
     clippy
+
+    dconf2nix
+    dconf-editor
+
+    gnome-tweaks
+    gnome-extension-manager
     gnomeExtensions.dash-to-panel
     gnomeExtensions.pop-shell
   ];

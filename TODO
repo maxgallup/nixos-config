@@ -1,0 +1,17 @@
+
+- [ ] use rage-nix sops
+
+- [ ] Build simple secrets manager 
+    - [ ] publish to nix pkgs, configure 
+
+- [ ] Install Docker
+- [ ] Configure VSCode
+- [ ] Install & Configure Alacritty
+- [ ] Install & Configure Input-Remapper
+
+- [ ] Configure nix garbage collection
+
+- [ ] Test Update procedure
+
+- [ ] Test zero to hero setup
+
