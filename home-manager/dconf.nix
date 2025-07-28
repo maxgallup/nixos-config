@@ -20,20 +20,20 @@ with lib.hm.gvariant;
     };
 
     # TODO: copy fonts into .config/.fonts/...
-    # "org/gnome/desktop/interface" = {
-    #   accent-color = "green";
-    #   clock-format = "24h";
-    #   color-scheme = "prefer-dark";
-    #   cursor-size = 24;
-    #   document-font-name = "CodeNewRoman Nerd Font Mono Bold 11";
-    #   font-antialiasing = "grayscale";
-    #   font-hinting = "none";
-    #   font-name = "Helvetica Neue Medium 11";
-    #   monospace-font-name = "CodeNewRoman Nerd Font Mono Bold 11";
-    #   show-battery-percentage = true;
-    #   text-scaling-factor = 1.0;
-    #   toolkit-accessibility = false;
-    # };
+    "org/gnome/desktop/interface" = {
+      accent-color = "green";
+      clock-format = "24h";
+      color-scheme = "prefer-dark";
+      cursor-size = 24;
+      document-font-name = "CodeNewRoman Nerd Font Mono Bold 11";
+      font-antialiasing = "grayscale";
+      font-hinting = "none";
+      font-name = "Helvetica Neue Medium 11";
+      monospace-font-name = "CodeNewRoman Nerd Font Mono Bold 11";
+      show-battery-percentage = true;
+      text-scaling-factor = 1.0;
+      toolkit-accessibility = false;
+    };
 
 
 

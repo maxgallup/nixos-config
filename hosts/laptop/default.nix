@@ -88,32 +88,69 @@
     createHome = true;
   };
 
-  # System packages
   environment.systemPackages = with pkgs; [
+    # ----------------
+    # Utilities & apps
+    # ----------------
     vim
     git
     brave
     just
+    tailscale
+    signal-desktop
+    anytype
+    spotify
 
-    rustc
-    cargo
-    rustfmt
-    clippy
 
+    # ------------------------
+    # Compilers & Interpreters
+    # ------------------------
+    clang
+    python314
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-src" "rust-analyzer" ];
+    })
+
+    # -----
+    # Gnome
+    # -----
     dconf2nix
     dconf-editor
-
     gnome-tweaks
     gnome-extension-manager
     gnomeExtensions.dash-to-panel
     gnomeExtensions.pop-shell
   ];
 
-
   # GNOME customizations
   services.gnome = {
     core-apps.enable = true;
     games.enable = false; # Disable GNOME games
+  };
+
+  # Fonts
+  fonts = {
+    enableDefaultPackages = true;
+    fontDir.enable = true;
+    packages = with pkgs; [ 
+      nerd-fonts.code-new-roman
+      helvetica-neue-lt-std
+    ];
+
+    # fontconfig = {
+    #   defaultFonts = {
+    #     serif = [  "Liberation Serif" "Vazirmatn" ];
+    #     sansSerif = [ "Ubuntu" "Vazirmatn" ];
+    #     monospace = [ "Ubuntu Mono" ];
+    #   };
+    # };
+  };
+
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 30d";
   };
 
   
