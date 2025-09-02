@@ -8,6 +8,5 @@ laptop:
 berlin:
     sudo nixos-rebuild switch --flake .#berlin --impure
 
-
 berlin-test:
     sudo nixos-rebuild test --flake .#berlin --impure

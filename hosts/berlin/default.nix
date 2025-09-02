@@ -16,7 +16,6 @@ in
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
 
-
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -46,6 +45,32 @@ in
     htop
     tailscale
   ];
+
+  # Create directories for mount points
+  systemd.tmpfiles.rules = [
+    "d /mnt/ssd-2t 0755 root root - -"
+    "d /mnt/hdd-500g 0755 root root - -"
+    "d /mnt/hdd-6t 0755 root root - -"
+  ];
+
+  # Filesystem mounts for additional drives
+  fileSystems."/mnt/ssd-2t" = {
+    device = "/dev/disk/by-uuid/754947c9-64f6-4f8d-baed-a3972ca10107";
+    fsType = "ext4";
+    options = [ "defaults" ];
+  };
+
+  fileSystems."/mnt/hdd-500g" = {
+    device = "/dev/disk/by-uuid/50e93167-daae-426d-a1cf-3b3007d379ae";
+    fsType = "ext4";
+    options = [ "defaults" ];
+  };
+
+  fileSystems."/mnt/hdd-6t" = {
+    device = "/dev/disk/by-uuid/8594d5ea-8410-4c53-a014-1394fbc0ebce";
+    fsType = "ext4";
+    options = [ "defaults" ];
+  };
 
   # Network configuration
   networking = {
@@ -87,6 +112,12 @@ in
   services.tailscale.enable = true;
 
   software.docker.enable = true;
-  # software.immich.enable = true;
+  
+  software.immich = {
+    enable = true;
+    parentLocation = "/mnt/ssd-2t/immich";
+    uploadLocation = "/mnt/ssd-2t/immich/library";
+    dbDataLocation = "/mnt/ssd-2t/immich/database";
+  };
 
 }
