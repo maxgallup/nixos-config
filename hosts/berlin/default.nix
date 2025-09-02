@@ -9,14 +9,13 @@ in
     modules.software
   ];
 
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
 
-
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
 
   time.timeZone = "Europe/Berlin";
   i18n.defaultLocale = "en_US.UTF-8";
@@ -33,11 +32,10 @@ in
     LC_TIME = "de_DE.UTF-8";
   };
   
-  # Console configuration
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "us";
-  };  
+  services.xserver.xkb = {
+    layout = "us";
+    variant = "";
+  };
 
   environment.systemPackages = with pkgs; [
     vim
@@ -56,22 +54,13 @@ in
     
     firewall = {
       enable = true;
-      allowedTCPPorts = [ 
-        22    # SSH
-      ];
-
+      allowedTCPPorts = [ 22 ];
       trustedInterfaces = [ "tailscale0" ];
     };
   };
 
   # Services
-  services.openssh = {
-    enable = true;
-    settings = {
-      PasswordAuthentication = false;
-      PermitRootLogin = "no";
-    };
-  };
+  services.openssh.enable = true;
 
   users.users.berlin = {
     isNormalUser = true;
@@ -98,6 +87,6 @@ in
   services.tailscale.enable = true;
 
   software.docker.enable = true;
-  software.immich.enable = true;
+  # software.immich.enable = true;
 
 }
