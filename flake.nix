@@ -48,6 +48,12 @@
             })
           ];
         };
+        berlin = lib.nixosSystem {
+          inherit system;
+          modules = [
+            ./hosts/berlin
+          ];
+        };
       };
   };
 }
