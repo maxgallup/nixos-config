@@ -9,8 +9,6 @@ in
     modules.software
   ];
 
-  software.docker.enable = true;
-
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nixpkgs.config.allowUnfree = true;
   system.stateVersion = "25.05";
@@ -60,7 +58,6 @@ in
       enable = true;
       allowedTCPPorts = [ 
         22    # SSH
-        2283  # Immich web interface
       ];
 
       trustedInterfaces = [ "tailscale0" ];
@@ -75,8 +72,6 @@ in
       PermitRootLogin = "no";
     };
   };
-
-  services.tailscale.enable = true;
 
   users.users.berlin = {
     isNormalUser = true;
@@ -98,4 +93,11 @@ in
     dates = "weekly";
     options = "--delete-older-than 30d";
   };
+
+  # Custom enabled software
+  services.tailscale.enable = true;
+
+  software.docker.enable = true;
+  software.immich.enable = true;
+
 }

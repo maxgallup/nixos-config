@@ -1,6 +1,6 @@
 default:
-    @scp -r * nix:/home/max/nixos-config || echo "ssh nix failed"
     @scp -r * vm-berlin:/home/berlin/nixos-config || echo "ssh berlin failed"
+    @scp -r * nix:/home/max/nixos-config || echo "ssh nix failed"
 
 laptop:
     sudo nixos-rebuild switch --flake .#laptop --impure
