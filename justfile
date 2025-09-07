@@ -5,8 +5,8 @@ default:
 laptop:
     sudo nixos-rebuild switch --flake .#laptop --impure
 
-berlin:
-    sudo nixos-rebuild switch --flake .#berlin --impure
+switch host:
+    sudo nixos-rebuild switch --flake .#{{host}} --impure
 
-berlin-test:
-    sudo nixos-rebuild test --flake .#berlin --impure
+test host:
+    sudo nixos-rebuild test --flake .#{{host}} --impure
