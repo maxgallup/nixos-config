@@ -44,13 +44,17 @@ in
     wget
     htop
     tailscale
+    rsync
   ];
 
   # Create directories for mount points
   systemd.tmpfiles.rules = [
     "d /mnt/ssd-2t 0755 root root - -"
     "d /mnt/hdd-500g 0755 root root - -"
+
     "d /mnt/hdd-6t 0755 root root - -"
+    "d /mnt/hdd-6t/backups 0755 root root - -"
+    "d /mnt/hdd-6t/backups/immich 0755 root root - -"
   ];
 
   # Filesystem mounts for additional drives
@@ -111,13 +115,63 @@ in
   # Custom enabled software
   services.tailscale.enable = true;
 
+  # Required by immich
   software.docker.enable = true;
   
+  # Immich
   software.immich = {
     enable = true;
-    parentLocation = "/mnt/ssd-2t/immich";
-    uploadLocation = "/mnt/ssd-2t/immich/library";
-    dbDataLocation = "/mnt/ssd-2t/immich/database";
+    dataDirectory = "/mnt/ssd-2t/immich";
+  };
+
+  # Backup service
+  systemd.services.immich-backup = {
+    description = "Backup Immich data to HDD";
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+      Group = "root";
+    };
+    script = ''
+      set -eu
+
+      echo "Starting Immich backup at $(date)"
+      
+      # Ensure backup directory exists
+      mkdir -p /mnt/hdd-6t/backups/immich
+      
+      # Perform the backup using rsync
+      ${pkgs.rsync}/bin/rsync \
+        --archive \
+        --verbose \
+        --human-readable \
+        --progress \
+        --delete \
+        --exclude='*.tmp' \
+        --exclude='*.lock' \
+        /mnt/ssd-2t/immich/ \
+        /mnt/hdd-6t/backups/immich/
+      
+      echo "Immich backup completed successfully at $(date)"
+      
+      # Log backup size
+      echo "Backup size: $(${pkgs.coreutils}/bin/du -sh /mnt/hdd-6t/backups/immich)"
+    '';
+    
+    # Log output to journal
+    serviceConfig.StandardOutput = "journal";
+    serviceConfig.StandardError = "journal";
+  };
+
+  # Timer to run backup daily at 3:00 AM
+  systemd.timers.immich-backup = {
+    description = "Run Immich backup daily";
+    wantedBy = [ "timers.target" ];
+    timerConfig = {
+      OnCalendar = "*-*-* 03:00:00";  # Every day at 3:00 AM
+      Persistent = true;  # Run missed timers on boot
+      RandomizedDelaySec = "15m";  # Add some randomization to avoid system load spikes
+    };
   };
 
 }

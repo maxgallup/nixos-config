@@ -9,10 +9,10 @@ let
     IMMICH_VERSION = "release";
     
     # The location where your uploaded files are stored
-    UPLOAD_LOCATION = cfg.uploadLocation;
+    UPLOAD_LOCATION = "${cfg.dataDirectory}/library";
 
     # The location where your database files are stored. Network shares are not supported for the database
-    DB_DATA_LOCATION = cfg.dbDataLocation;
+    DB_DATA_LOCATION = "${cfg.dataDirectory}/database";
 
     # To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
     # TZ = "Etc/UTC";
@@ -31,26 +31,10 @@ in {
     software.immich = {
       enable = lib.mkEnableOption "enable immich";
 
-      parentLocation = lib.mkOption {
+      dataDirectory = lib.mkOption {
         type = lib.types.path;
         description = lib.mdDoc ''
           Parent directory of all immich data that should be backed up.
-          All other directories should be children of this directory.
-        '';
-      };
-
-      uploadLocation = lib.mkOption {
-        type = lib.types.path;
-        description = lib.mdDoc ''
-          The location where your uploaded files are stored.
-        '';
-      };
-
-      dbDataLocation = lib.mkOption {
-        type = lib.types.path;
-        description = lib.mdDoc ''
-          The location where your database files are stored.
-          Network shares are not supported for the database.
         '';
       };
     };
@@ -59,9 +43,9 @@ in {
   config = lib.mkIf cfg.enable {
     # Create necessary directories
     systemd.tmpfiles.rules = [
-      "d ${cfg.parentLocation} 0755 root root -"
-      "d ${cfg.uploadLocation} 0755 root root -"
-      "d ${cfg.dbDataLocation} 0755 postgres postgres -"
+      "d ${cfg.dataDirectory} 0755 root root -"
+      "d ${cfg.dataDirectory}/library 0755 root root -"
+      "d ${cfg.dataDirectory}/database 0755 postgres postgres -"
     ];
 
     # Copy the docker-compose.yaml file to /etc/immich/
