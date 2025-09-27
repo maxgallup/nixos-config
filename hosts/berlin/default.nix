@@ -45,6 +45,7 @@ in
     htop
     tailscale
     rsync
+    cpufetch
   ];
 
   # Create directories for mount points
