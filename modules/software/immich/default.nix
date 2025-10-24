@@ -6,8 +6,8 @@ let
   # Find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
   immichEnv = {
     # The Immich version to use. You can pin this to a specific version like "v1.71.0"
-    IMMICH_VERSION = "release";
-    
+    IMMICH_VERSION = "v2.1.0";
+
     # The location where your uploaded files are stored
     UPLOAD_LOCATION = "${cfg.dataDirectory}/library";
 
@@ -15,7 +15,7 @@ let
     DB_DATA_LOCATION = "${cfg.dataDirectory}/database";
 
     # To set a timezone, uncomment the next line and change Etc/UTC to a TZ identifier from this list: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List
-    # TZ = "Etc/UTC";
+    TZ = "Europe/Berlin";
     DB_USERNAME = "postgres";
     DB_PASSWORD = "postgres";
     DB_DATABASE_NAME = "immich";
@@ -89,5 +89,5 @@ in {
         config.environment.etc."immich/.env".source
       ];
     };
-  }; 
+  };
 }
