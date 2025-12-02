@@ -38,7 +38,7 @@
               home-manager.useUserPackages = true;
               home-manager.users.max = ./home-manager/default.nix;
             }
-            
+
             # Make the config available to home-manager
             ({ config, ... }: {
               home-manager.extraSpecialArgs = {

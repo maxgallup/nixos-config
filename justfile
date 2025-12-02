@@ -1,12 +1,12 @@
 default:
-    @scp -r * berlin:/home/berlin/nixos-config || echo "ssh berlin failed"
-    @scp -r * nix:/home/max/nixos-config || echo "ssh nix failed"
+    @rsync -avz . berlin:/home/berlin/nixos-config --exclude '.git'
+    # @rsync -avz . nix:/home/max/nixos-config --exclude '.git'
 
 laptop:
     sudo nixos-rebuild switch --flake .#laptop --impure
 
 switch host:
-    sudo nixos-rebuild switch --flake .#{{host}} --impure
+    sudo nixos-rebuild switch --flake .#{{ host }} --impure
 
 test host:
-    sudo nixos-rebuild test --flake .#{{host}} --impure
+    sudo nixos-rebuild test --flake .#{{ host }} --impure

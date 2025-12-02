@@ -47,6 +47,7 @@ in
     rsync
     cpufetch
     docker-compose
+    bun
   ];
 
   # Create directories for mount points
@@ -101,6 +102,21 @@ in
     createHome = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
+
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
+
+    ];
+  };
+
+  users.users.git = {
+    isNormalUser = true;
+    description = "Git user";
+    home = "/home/git";
+    createHome = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
+
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
     ];
   };
 
@@ -124,6 +140,32 @@ in
   software.immich = {
     enable = true;
     dataDirectory = "/mnt/ssd-2t/immich";
+  };
+
+  software.forgejo = {
+    enable = false;
+    dataDirectory = "/mnt/ssd-2t/forgejo";
+  };
+
+
+  # Temporary CCC Monitoring service
+  systemd.services.ccc-notify = {
+    enable = true;
+    description = "CCC tickets notification";
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      Group = "root";
+    };
+    script = ''
+        ${pkgs.bun}/bin/bun run /home/berlin/ccc-notify/index.ts
+    '';
+
+    wantedBy = [ "multi-user.target" ];
+
+    # Log output to journal
+    serviceConfig.StandardOutput = "journal";
+    serviceConfig.StandardError = "journal";
   };
 
   # Backup service
