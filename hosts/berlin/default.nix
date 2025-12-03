@@ -108,17 +108,17 @@ in
     ];
   };
 
-  users.users.git = {
-    isNormalUser = true;
-    description = "Git user";
-    home = "/home/git";
-    createHome = true;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
+  # users.users.git = {
+  #   isNormalUser = true;
+  #   description = "Git user";
+  #   home = "/home/git";
+  #   createHome = true;
+  #   openssh.authorizedKeys.keys = [
+  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
 
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
-    ];
-  };
+  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
+  #   ];
+  # };
 
   # Enable sudo for wheel group
   security.sudo.wheelNeedsPassword = false;
@@ -142,10 +142,10 @@ in
     dataDirectory = "/mnt/ssd-2t/immich";
   };
 
-  software.forgejo = {
-    enable = false;
-    dataDirectory = "/mnt/ssd-2t/forgejo";
-  };
+  # software.forgejo = {
+  #   enable = false;
+  #   dataDirectory = "/mnt/ssd-2t/forgejo";
+  # };
 
 
   # Temporary CCC Monitoring service
@@ -166,6 +166,25 @@ in
     # Log output to journal
     serviceConfig.StandardOutput = "journal";
     serviceConfig.StandardError = "journal";
+  };
+
+  # Temporary krea Monitoring service
+  systemd.services.krea-notify = {
+    enable = true;
+    description = "Krea waitlist Check";
+    after = [ "docker.service" ];
+    requires = [ "docker.service" ];
+    serviceConfig = {
+      Type = "simple";
+      User = "root";
+      Group = "root";
+      StandardOutput = "journal";
+      StandardError = "journal";
+    };
+    script = ''
+      ${pkgs.docker}/bin/docker run --rm krea-notify:latest
+    '';
+    wantedBy = [ "multi-user.target" ];
   };
 
   # Backup service
