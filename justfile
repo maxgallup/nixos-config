@@ -1,9 +1,9 @@
-default:
-    @rsync -avz . berlin:/home/berlin/nixos-config --exclude '.git'
-    # @rsync -avz . nix:/home/max/nixos-config --exclude '.git'
+_default:
+    @just --list
 
-laptop:
-    sudo nixos-rebuild switch --flake .#laptop --impure
+sync:
+    @rsync -avz . berlin:/home/berlin/nixos-config --exclude '.git' --delete
+    # @rsync -avz . nix:/home/max/nixos-config --exclude '.git'
 
 switch host:
     sudo nixos-rebuild switch --flake .#{{ host }} --impure
