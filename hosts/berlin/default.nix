@@ -149,43 +149,43 @@ in
 
 
   # Temporary CCC Monitoring service
-  systemd.services.ccc-notify = {
-    enable = true;
-    description = "CCC tickets notification";
-    serviceConfig = {
-      Type = "simple";
-      User = "root";
-      Group = "root";
-    };
-    script = ''
-        ${pkgs.bun}/bin/bun run /home/berlin/ccc-notify/index.ts
-    '';
+  # systemd.services.ccc-notify = {
+  #   enable = true;
+  #   description = "CCC tickets notification";
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     User = "root";
+  #     Group = "root";
+  #   };
+  #   script = ''
+  #       ${pkgs.bun}/bin/bun run /home/berlin/ccc-notify/index.ts
+  #   '';
 
-    wantedBy = [ "multi-user.target" ];
+  #   wantedBy = [ "multi-user.target" ];
 
-    # Log output to journal
-    serviceConfig.StandardOutput = "journal";
-    serviceConfig.StandardError = "journal";
-  };
+  #   # Log output to journal
+  #   serviceConfig.StandardOutput = "journal";
+  #   serviceConfig.StandardError = "journal";
+  # };
 
   # Temporary krea Monitoring service
-  systemd.services.krea-notify = {
-    enable = true;
-    description = "Krea waitlist Check";
-    after = [ "docker.service" ];
-    requires = [ "docker.service" ];
-    serviceConfig = {
-      Type = "simple";
-      User = "root";
-      Group = "root";
-      StandardOutput = "journal";
-      StandardError = "journal";
-    };
-    script = ''
-      ${pkgs.docker}/bin/docker run --rm krea-notify:latest
-    '';
-    wantedBy = [ "multi-user.target" ];
-  };
+  # systemd.services.krea-notify = {
+  #   enable = true;
+  #   description = "Krea waitlist Check";
+  #   after = [ "docker.service" ];
+  #   requires = [ "docker.service" ];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     User = "root";
+  #     Group = "root";
+  #     StandardOutput = "journal";
+  #     StandardError = "journal";
+  #   };
+  #   script = ''
+  #     ${pkgs.docker}/bin/docker run --rm krea-notify:latest
+  #   '';
+  #   wantedBy = [ "multi-user.target" ];
+  # };
 
   # Backup service
   systemd.services.immich-backup = {
