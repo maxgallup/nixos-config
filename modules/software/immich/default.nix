@@ -8,6 +8,8 @@ let
     # The Immich version to use. You can pin this to a specific version like "v1.71.0"
     IMMICH_VERSION = "v2.1.0";
 
+    SERVICE = "berlin-immich";
+
     # The location where your uploaded files are stored
     UPLOAD_LOCATION = "${cfg.dataDirectory}/library";
 
@@ -44,6 +46,7 @@ in {
     # Create necessary directories
     systemd.tmpfiles.rules = [
       "d ${cfg.dataDirectory} 0755 root root -"
+      "d ${cfg.dataDirectory} 0755 root root -"
       "d ${cfg.dataDirectory}/library 0755 root root -"
       "d ${cfg.dataDirectory}/database 0755 postgres postgres -"
     ];
@@ -51,6 +54,11 @@ in {
     # Copy the docker-compose.yaml file to /etc/immich/
     environment.etc."immich/docker-compose.yaml" = {
       source = ./docker-compose.yaml;
+      mode = "0644";
+    };
+
+    environment.etc."immich/config/serve.json" = {
+      source = ./config/serve.json;
       mode = "0644";
     };
 
@@ -75,6 +83,9 @@ in {
       };
 
       script = ''
+
+        cat /home/berlin/.env >> /etc/immich/.env
+
         # Start services using docker-compose
         ${pkgs.docker-compose}/bin/docker-compose up -d
       '';
@@ -87,6 +98,7 @@ in {
       restartTriggers = [
         config.environment.etc."immich/docker-compose.yaml".source
         config.environment.etc."immich/.env".source
+        config.environment.etc."immich/config/serve.json".source
       ];
     };
   };
