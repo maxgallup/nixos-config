@@ -47,6 +47,7 @@ in
     rsync
     cpufetch
     docker-compose
+    python315
     bun
   ];
 
