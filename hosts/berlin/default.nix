@@ -141,11 +141,16 @@ in
   # Required by immich
   software.docker.enable = true;
 
+  # Flox
+  software.flox.enable = true;
+
   # Immich
   software.immich = {
     enable = true;
     dataDirectory = "/mnt/ssd-2t/immich";
   };
+
+
 
   # software.forgejo = {
   #   enable = false;
