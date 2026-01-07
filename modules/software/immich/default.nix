@@ -57,11 +57,6 @@ in {
       mode = "0644";
     };
 
-    environment.etc."immich/config/serve.json" = {
-      source = ./config/serve.json;
-      mode = "0644";
-    };
-
     # Create the .env file
     environment.etc."immich/.env" = {
       text = envFileContent;
@@ -98,7 +93,6 @@ in {
       restartTriggers = [
         config.environment.etc."immich/docker-compose.yaml".source
         config.environment.etc."immich/.env".source
-        config.environment.etc."immich/config/serve.json".source
       ];
     };
   };
