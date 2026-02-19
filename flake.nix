@@ -4,13 +4,13 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
 
-    flox = {
-      url = "github:flox/flox/latest";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # flox = {
+    #   url = "github:flox/flox/latest";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
-  outputs = { self, nixpkgs, flox, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
       lib = nixpkgs.lib;

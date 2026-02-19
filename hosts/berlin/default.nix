@@ -142,7 +142,7 @@ in
   software.docker.enable = true;
 
   # Flox
-  software.flox.enable = true;
+  # software.flox.enable = true;
 
   # Immich
   software.immich = {

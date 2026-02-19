@@ -6,7 +6,7 @@ let
   # Find documentation for all the supported env variables at https://immich.app/docs/install/environment-variables
   immichEnv = {
     # The Immich version to use. You can pin this to a specific version like "v1.71.0"
-    IMMICH_VERSION = "v2.1.0";
+    IMMICH_VERSION = "v2.5.6";
 
     SERVICE = "berlin-immich";
 
