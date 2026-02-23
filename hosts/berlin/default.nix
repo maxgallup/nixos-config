@@ -54,7 +54,7 @@ in
   # Create directories for mount points
   systemd.tmpfiles.rules = [
     "d /mnt/ssd-2t 0755 root root - -"
-    "d /mnt/hdd-500g 0755 root root - -"
+    # "d /mnt/hdd-500g 0755 root root - -"
 
     "d /mnt/hdd-6t 0755 root root - -"
     "d /mnt/hdd-6t/backups 0755 root root - -"
@@ -68,11 +68,11 @@ in
     options = [ "defaults" ];
   };
 
-  fileSystems."/mnt/hdd-500g" = {
-    device = "/dev/disk/by-uuid/50e93167-daae-426d-a1cf-3b3007d379ae";
-    fsType = "ext4";
-    options = [ "defaults" ];
-  };
+  # fileSystems."/mnt/hdd-500g" = {
+  #   device = "/dev/disk/by-uuid/50e93167-daae-426d-a1cf-3b3007d379ae";
+  #   fsType = "ext4";
+  #   options = [ "defaults" ];
+  # };
 
   fileSystems."/mnt/hdd-6t" = {
     device = "/dev/disk/by-uuid/8594d5ea-8410-4c53-a014-1394fbc0ebce";
