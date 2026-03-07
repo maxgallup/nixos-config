@@ -104,7 +104,7 @@ in
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
 
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINKoJDYOnPH2KIewig8fG7NoOrhP/gfcQjppNVkWRuOP max@gallup.engineering"
 
     ];
   };
