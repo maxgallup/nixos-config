@@ -48,8 +48,11 @@ in
     cpufetch
     docker-compose
     python315
+    uv
     bun
   ];
+
+  programs.nix-ld.enable = true;
 
   # Create directories for mount points
   systemd.tmpfiles.rules = [
@@ -108,18 +111,6 @@ in
 
     ];
   };
-
-  # users.users.git = {
-  #   isNormalUser = true;
-  #   description = "Git user";
-  #   home = "/home/git";
-  #   createHome = true;
-  #   openssh.authorizedKeys.keys = [
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMH/alT6XhbAS1vBgByibmUymuB8iSedTPH81pnwYfhQ m.gallup@student.vu.nl"
-
-  #     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC++GkENcMYRT+1fUgGxqcMoLyLELUoW3R4BYhnVrtTK u0_a240@localhost"
-  #   ];
-  # };
 
   # Enable sudo for wheel group
   security.sudo.wheelNeedsPassword = false;
